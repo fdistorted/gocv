@@ -101,3 +101,7 @@ func GetOptimalNewCameraMatrixWithParams(cameraMatrix Mat, distCoeffs Mat, image
 func Undistort(src Mat, dst *Mat, cameraMatrix Mat, distCoeffs Mat, newCameraMatrix Mat) {
 	C.Undistort(src.Ptr(), dst.Ptr(), cameraMatrix.Ptr(), distCoeffs.Ptr(), newCameraMatrix.Ptr())
 }
+
+func SolvePnP(objectPoints Mat, imagePoints Mat, cameraMatrix Mat, distCoeffs Mat, rvec *Mat, tvec *Mat, useExtrinsicGuess bool, flags int) bool {
+	return C.SolvePnP(objectPoints.Ptr(), imagePoints.Ptr(), cameraMatrix.Ptr(), distCoeffs.Ptr(), rvec.Ptr(), tvec.Ptr(), C.bool(useExtrinsicGuess), flags)
+}
